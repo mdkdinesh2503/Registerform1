@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>C l o u d - L o g i n</title>
+
+    <!-- Title logo link  -->
+    <link rel="shortcut icon" sizes="32x32" href="./images/title-img.png" type="image/x-icon" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Header section Starts  -->
+
+    <header>
+
+        <a href="#" class="logo"> <i class="fas fa-cloud-moon"></i> <span>C</span>loud... </a>
+
+        <a class="btn-main" href="./home.html"><i class="fas fa-home"></i><span>&numsp;Home Page</span></a>
+
+    </header>
+
+    <!-- Header section Ends  -->
+    <div class="main">
+        <div class="Att-container">
+            <h1>Register Form</h1>
+            <form>
+                <div class="fields">
+                    <div class="input-field">
+                        <label>Username</label>
+                        <input id="username" type="text" onkeyup="usernamevalidate()" required
+                            placeholder="Enter your name">
+                    </div>
+                    <div class="input-field">
+                        <label>Email</label>
+                        <input id="email" type="email" onkeyup="emailvalidate()" required
+                            placeholder="Enter your email">
+                    </div>
+                    <div class="input-field">
+                        <label>Field</label>
+                        <select required id="field">
+                            <option hidden selected>Select anyone..</option>
+                            <option>Admin</option>
+                            <option>User</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label>Password</label>
+                        <input id="password" required onkeyup="passwordvalidate()" type="password"
+                            placeholder="Enter your password">
+                    </div>
+                    <div class="input-field">
+                        <label>Confirm Password</label>
+                        <input id="confirmpassword" onkeyup="confirmpasswordvalidate()" required type="password"
+                            placeholder="Enter your confirm password">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button id="smtbtn" onclick="check()" type="submit" class="btn">
+                        Submit <i class="fas fa-share"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<style>
+    /*--------------------------------
+    Overall Style section starts here
+    ---------------------------------  */
+
+    :root {
+        --blue: #4070f4;
+        --black: #000000;
+        --light-blue: #a6bcfa;
+        --dark-blue: #03262c;
+        --light-color: #555;
+        --box-shadow: .5rem .5rem 0 #d2dfff;
+        --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
+        --border: .2rem solid var(--blue);
+        --white: #fff;
+    }
+
+
+
+    * {
+        font-family: 'Nunito', sans-serif;
+        margin: 0;
+        padding: 0;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        transition: all .2s linear;
+        /* overflow: hidden; */
+    }
+
+    html {
+        font-size: 55%;
+        max-zoom: 90%;
+        overflow: hidden;
+    }
+
+    body {
+
+        background-image: url(./images/homepage-img-min.jpg);
+        background-size: cover;
+    }
+
+    /* Overall Style section ends here  */
+
+    /*--------------------------------
+    Overall header section starts here
+    ---------------------------------  */
+
+    header {
+        padding: 2rem 9%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 .5rem 1.5rem #0000001a;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: transparent;
+    }
+
+    header .logo {
+        font-size: 5rem;
+        color: var(--white);
+    }
+
+    header .logo i,
+    header .logo span {
+        color: var(--dark-blue);
+    }
+
+    /* Overall header section starts here  */
+
+    .btn-main {
+        font-size: 2rem;
+        font-weight: bolder;
+        padding: 20px 45px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: 0.5s;
+        display: inline-flex;
+        margin-top: 1rem;
+        width: fit-content;
+        border: .2rem solid var(--blue);
+        border-radius: .5rem;
+        background-color: var(--blue);
+        color: var(--white);
+    }
+
+    .btn-main:hover {
+        color: var(--blue);
+        background: var(--white);
+    }
+
+    @media (max-width:630px) {
+        .btn-main {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 15px 25px;
+        }
+    }
+
+    @media (max-width:500px) {
+        .btn-main span {
+            display: none;
+            visibility: hidden;
+        }
+    }
+
+    @media (max-width:415px) {
+        .btn-main {
+            padding: 12px 20px;
+        }
+    }
+
+    .main {
+        padding: 1.5rem;
+        /* min-height: calc(100vh-70px); */
+        margin-top: 12rem;
+    }
+
+
+    .buttons {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .btn {
+        color: var(--white);
+        background: var(--blue);
+        box-shadow: var(--box-shadow);
+        font-size: 2.5rem;
+        padding: 0.2rem 1rem;
+        font-weight: 500;
+        margin: 2rem;
+        justify-content: space-between;
+        border: .2rem solid var(--black);
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background: var(--white);
+        color: var(--blue);
+        border: var(--border);
+    }
+
+    /* Attendance css  */
+
+    .Att-container {
+        max-width: 700px;
+        width: 100%;
+        border-radius: 6px;
+        padding: 25px;
+        margin: 1rem auto;
+        background-color: var(--white);
+        box-shadow: var(--box-shadow);
+        border-top: 8px solid var(--blue);
+        border-left: .2rem solid var(--blue);
+        border-right: .2rem solid var(--blue);
+        border-bottom: .2rem solid var(--blue);
+    }
+
+    .Att-container h1 {
+        position: relative;
+        font-size: 25px;
+        font-weight: 600;
+        color: var(--dark-blue);
+    }
+
+    .Att-container h1::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 3px;
+        width: 140px;
+        border-radius: 8px;
+        background-color: var(--blue);
+    }
+
+    .Att-container form {
+        margin-top: 16px;
+        background-color: var(--white);
+        overflow: hidden;
+    }
+
+    .Att-container form .fields p {
+        font-size: 2rem;
+        color: #4070f4;
+    }
+
+    .Att-container form .fields {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .Att-container form .fields .input-field {
+        display: flex;
+        width: calc(100% - 15px);
+        flex-direction: column;
+        margin: 4px 0;
+    }
+
+    .Att-container .input-field label {
+        font-size: 16px;
+        font-weight: 500;
+        position: relative;
+        color: var(--light-color);
+    }
+
+    .Att-container .input-field input,
+    .Att-container select {
+        outline: none;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 5px;
+        border: .1rem solid var(--light-color);
+        padding: 0 15px;
+        height: 42px;
+        margin: 8px 0;
+        width: calc(100%-10%);
+    }
+
+    .Att-container .input-field select:focus,
+    .Att-container .input-field input:focus {
+        box-shadow: var(--box-shadow);
+        border: var(--border);
+    }
+
+    .Att-container .input-field select,
+    .Att-container .input-field input {
+        color: var(--light-color);
+    }
+
+    @media (max-width: 550px) {
+        .Att-container form .fields .input-field {
+            width: 100%;
+        }
+    }
+</style>
+
+<script>
+
+    function usernamevalidate() {
+        var UsernameRegister = document.getElementById("username").value;
+        var UserError = document.getElementById("username");
+        var uservalidate = "^[a-zA-Z]+$";
+        if (!UsernameRegister.match(uservalidate)) {
+            UserError.style.border = ".2rem solid red";
+            UserError.style.boxShadow = ".5rem .5rem 0 #FFCCCB";
+            return false;
+        }
+        UserError.style.border = ".2rem solid green";
+        UserError.style.boxShadow = ".5rem .5rem 0 #90EE90";
+    }
+
+    function emailvalidate() {
+        var emailRegister = document.getElementById("email").value;
+        var emailError = document.getElementById("email");
+        var emvalidate = "^[0-9a-zA-Z]+[._]{0,1}[0-9a-zA-Z]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}([.][a-zA-Z]{2,3}){0,1}$";
+        if (!emailRegister.match(emvalidate)) {
+            emailError.style.border = ".2rem solid red";
+            emailError.style.boxShadow = ".5rem .5rem 0 #FFCCCB";
+            return false;
+        }
+        emailError.style.border = ".2rem solid green";
+        emailError.style.boxShadow = ".5rem .5rem 0 #90EE90";
+    }
+
+    function passwordvalidate() {
+        var passwordRegister = document.getElementById("password").value;
+        var passwordError = document.getElementById("password");
+        if (passwordRegister.length < 5 || passwordRegister.length > 10) {
+            passwordError.style.border = ".2rem solid red";
+            passwordError.style.boxShadow = ".5rem .5rem 0 #FFCCCB";
+            return false;
+        }
+        passwordError.style.border = ".2rem solid green";
+        passwordError.style.boxShadow = ".5rem .5rem 0 #90EE90";
+    }
+
+    function confirmpasswordvalidate() {
+        var confirmPassRegister = document.getElementById("confirmpassword").value;
+        var passwordRegister = document.getElementById("password").value;
+        var confirmpassError = document.getElementById("confirmpassword");
+        if (passwordRegister != confirmPassRegister) {
+            confirmpassError.style.border = ".2rem solid red";
+            confirmpassError.style.boxShadow = ".5rem .5rem 0 #FFCCCB";
+            return false;
+        }
+        confirmpassError.style.border = ".2rem solid green";
+        confirmpassError.style.boxShadow = ".5rem .5rem 0 #90EE90";
+    }
+
+    function check() {
+        var uservalidate = "^[a-zA-Z]+$";
+        var emvalidate = "^[0-9a-zA-Z]+[._]{0,1}[0-9a-zA-Z]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}([.][a-zA-Z]{2,3}){0,1}$";
+        var UsernameRegister = document.getElementById("username").value;
+        var emailRegister = document.getElementById("email").value;
+        var passwordRegister = document.getElementById("password").value;
+        var confirmPassRegister = document.getElementById("confirmpassword").value;
+
+        if (UsernameRegister.match(uservalidate)) {
+        } else {
+            alert("User name should be alphabets!");
+            usernamevalidate();
+            return false;
+        }
+        if (emailRegister.match(emvalidate)) {
+        } else {
+            alert("Enter proper email id!");
+            return false;
+        }
+        if (passwordRegister.length >= 5 && passwordRegister.length <= 10) {
+        } else {
+            alert("Enter Strong password minimum 5 digits!");
+            return false;
+        }
+        if (passwordRegister == confirmPassRegister) {
+        } else {
+            alert("confirm password not matches password!");
+            return false;
+        }
+        alert("Redirecting to login page!!");
+        window.open("index.html", "_self");
+        return false;
+    }
+</script>
+
+</html>
